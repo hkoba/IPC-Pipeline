@@ -1,6 +1,6 @@
 package IPC::Pipeline;
 
-# Copyright (c) 2012, cPanel, Inc.
+# Copyright (c) 2014, cPanel, Inc.
 # All rights reserved.
 # http://cpanel.net/
 #
@@ -329,9 +329,13 @@ B<IPC::Pipeline>.
 
 =back
 
+=head1 AUTHOR
+
+Written by Xan Tronix <xan@cpan.org>
+
 =head1 COPYRIGHT
 
-Copyright (c) 2012, cPanel, Inc.
+Copyright (c) 2014, cPanel, Inc.
 All rights reserved.
 http://cpanel.net/
 
