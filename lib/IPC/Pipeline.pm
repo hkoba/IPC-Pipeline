@@ -16,9 +16,9 @@ BEGIN {
     use Exporter ();
     use vars qw( $VERSION @ISA @EXPORT );
 
-    $VERSION = '0.9';
-    @ISA     = ('Exporter');
-    @EXPORT  = ('pipeline');
+    our $VERSION = '1.0';
+    our @ISA     = ('Exporter');
+    our @EXPORT  = ('pipeline');
 }
 
 sub exec_filter {
