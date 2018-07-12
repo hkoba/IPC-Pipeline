@@ -54,7 +54,12 @@ sub pipeline {
     # process.
     #
     pipe my ( $child_out, $in )       or die("Cannot create a file handle pair for standard input piping: $!");
-    pipe my ( $error_out, $error_in ) or die("Cannot create a file handle pair for standard error piping: $!");
+    my ( $error_out, $error_in );
+    if (defined $_[2] and ref $_[2] eq 'GLOB' and $_[2] == \*STDERR) {
+      $error_in = \*STDERR;
+    } else {
+      pipe $error_out, $error_in or die("Cannot create a file handle pair for standard error piping: $!");
+    }
 
     my @pids;
 
@@ -116,7 +121,10 @@ sub pipeline {
         POSIX::dup2( fileno($child_out), $_[1] );
     }
 
-    if ( !defined $_[2] ) {
+    if ( !defined $error_out) {
+      # PASS Through STDERR.
+    }
+    elsif ( !defined $_[2] ) {
         eval { $_[2] = $error_out };
     }
     elsif ( ref( $_[2] ) eq 'GLOB' ) {
